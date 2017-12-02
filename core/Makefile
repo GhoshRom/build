@@ -1,5 +1,38 @@
 # Put some miscellaneous rules here
 
+# Build system colors
+#
+# PFX: Prefix "target C++:" in yellow
+# INS: Module "Install:" output color (cyan for ics)
+
+ifneq ($(BUILD_WITH_COLORS),0)
+  CL_PFX="\033[33m"
+  CL_INS="\033[36m"
+  CL_RED="\033[31m"
+  CL_GRN="\033[32m"
+  CL_YLW="\033[33m"
+  CL_BLU="\033[34m"
+  CL_MAG="\033[35m"
+  CL_CYN="\033[36m"
+  CL_RST="\033[0m"
+
+# Light/Bold colors
+#red
+  CL_BRD="\033[1;31m"
+#green
+  CL_BGN="\033[1;32m"
+#yellow
+  CL_BYW="\033[1;33m"
+#blue
+  CL_BBL="\033[1;34m"
+#magenta
+  CL_BMG="\033[1;35m"
+#cyan
+  CL_BCY="\033[1;36m"
+#white
+  CL_BWT="\033[1;37m"
+endif
+
 # HACK: clear LOCAL_PATH from including last build target before calling
 # intermedites-dir-for
 LOCAL_PATH := $(BUILD_SYSTEM)
@@ -2457,7 +2490,45 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(CUSTOM_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(CUSTOM_TARGET_PACKAGE) > $(CUSTOM_TARGET_PACKAGE).md5sum
-	@echo -e "Package complete: $(CUSTOM_TARGET_PACKAGE)"
+
+	@echo -e ${CL_BWT}" "${CL_RST}
+	@echo -e ${CL_BWT}" "${CL_RST}
+	@echo -e ${CL_BWT}"			                         ruUMMMMMMMMn      	    	   	"${CL_RST}
+	@echo -e ${CL_BWT}"			                      rMMMMMMMMMMMMMMMMb   	    	   	"${CL_RST}
+	@echo -e ${CL_BWT}"			                     dMMMMMMMMMMMMMMMMMMMb 	    	   	"${CL_RST}
+	@echo -e ${CL_BWT}"			                    dMMMMMMMMMMMMMMMMMMMMMb		    	"${CL_RST}
+	@echo -e ${CL_BWT}"			                   qMMMMMMMMMMMMMMMMMMMMMMMi			"${CL_RST}
+	@echo -e ${CL_BWT}"			                  jMMMMMMMMMMMMMMMMMMMMMMMMh			"${CL_RST}
+	@echo -e ${CL_BWT}"			                  MMMMMMMMMMMj 9MMMMMMMMMMMd			"${CL_RST}
+	@echo -e ${CL_BWT}"			                 lMMMMMMMMMMf  iMMMMMFlMMMMM			"${CL_RST}
+	@echo -e ${CL_BWT}"			                jNMMMMMMMMMf   NMMMMo  NMMMM			"${CL_RST}
+	@echo -e ${CL_BWT}"			                yMMMMMMMMMMj  jMMMMMi  8MMdF			"${CL_RST}
+	@echo -e ${CL_BWT}"			               jMMMMMMMMMMMMMMMMMMMMi jMMMM 			"${CL_RST}
+	@echo -e ${CL_BWT}"			               NMMMMMMMMMMMMMMMMMMMMMNMMMMF 			"${CL_RST}
+	@echo -e ${CL_BWT}"			              mMMMMMMMMMMMMMMMMMMMMMMMMMMF  			"${CL_RST}
+	@echo -e ${CL_BWT}"			             mMMMMMMMMMMMMMMMMMMMMMMMMMMT   			"${CL_RST}
+	@echo -e ${CL_BWT}"			            mMMNNMMMMMMMMMMMMMMMMMMMMMMB    			"${CL_RST}
+	@echo -e ${CL_BWT}"			           mMMNNMMMMMMMNMMMMMMMMMMMMMMMF    			"${CL_RST}
+	@echo -e ${CL_BWT}"			         oNMMNNNMMMMMMNNNMMMMMMMMMMMMMM     			"${CL_RST}
+	@echo -e ${CL_BWT}"			       jhMMMNNNMMMMMMMNNMMMMMMMMMMMNMME     			"${CL_RST}
+	@echo -e ${CL_BWT}"			     yhMMMMNNNMMMMMMMNNNMMMMMMMMMMMNMME     			"${CL_RST}
+	@echo -e ${CL_BWT}"			   yyNMMMNNNNNMMMMMMMNNNMMMMMMMMMMNNMMb     			"${CL_RST}
+	@echo -e ${CL_BWT}"			  oNMMMNNNNNiMMMMMMMMNNMMMMMMMMMMMNNMMM     			"${CL_RST}
+	@echo -e ${CL_BWT}"			 sMMMNNNNNiiMMMMMMMMMNNMMMMMMMMMMNNNNMMN    			"${CL_RST}
+	@echo -e ${CL_BWT}"			 7mNNNmddiiMMMMMMMMMMMiMMMMMMMMMMiNNNMMMd   			"${CL_RST}
+	@echo -e ${CL_BWT}"			  XMWMY  dMMMMMMMMMMMiMMMMMMMMMMMiNNNMMMMt  			"${CL_RST}
+	@echo -e ${CL_BWT}"			         dMMMMMMNMMMMiMMMMMMMMMMMNiMNMMMMNX 			"${CL_RST}
+	@echo -e ${CL_BWT}"			         NMMMMMNNNMTITsmMMMMMMMMMiiMMNMMMMM 			"${CL_RST}
+	@echo -e ${CL_BWT}"			         hMMMMMNMMr    7hMMMMMMMMMYdNNMMMMh 			"${CL_RST}
+	@echo -e ${CL_BWT}"			          odmdoXP       7dMMMMMNP  YWdNMMMh 			"${CL_RST}
+	@echo -e ${CL_BWT}"			                         7mMMMMs     TMWXF  			"${CL_RST}
+	@echo -e ${CL_BWT}"			                          iMWMr             			"${CL_RST}
+	@echo -e ${CL_BWT}" "${CL_RST}
+	@echo -e ${CL_BWT}"			                  Ghost ROM! "${CL_RST}
+	@echo -e ${CL_BWT}" "${CL_RST}
+	@echo -e ${CL_CYN}"Build complete: $(CUSTOM_TARGET_PACKAGE)"${CL_RST}
+	@echo -e ${CL_BWT}" "${CL_RST}
+	@echo -e "SIZE:"${CL_BWT}" `ls -la --si $(CUSTOM_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
 
 endif    # build_ota_package
 
